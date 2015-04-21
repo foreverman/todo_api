@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TasksController < ApplicationController
+    class TasksController < BaseController
       # doorkeeper_for :all
       before_action :doorkeeper_authorize!
 
@@ -16,10 +16,6 @@ module Api
       private
       def task_params
         params.require(:task).permit(:name)
-      end
-
-      def current_user
-        @current_user ||= User.find(doorkeeper_token.resource_owner_id)
       end
     end
   end
